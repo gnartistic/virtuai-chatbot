@@ -1,0 +1,35 @@
+/* Style for the chat container */
+.chat-container {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* Style for user messages (in this case, the assistant's responses) */
+.user-message {
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+/* Style for assistant messages (in this case, the user's messages) */
+/* Style for assistant messages (responses) */
+.assistant-message {
+    background-color: #0084ff;
+    /* Light gray background */
+    color: #000;
+    /* Black text */
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    max-width: 70%;
+    word-wrap: break-word;
+    position: relative;
+}
+
+.assistant-message pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
