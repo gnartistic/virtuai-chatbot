@@ -1,11 +1,34 @@
-<div class="chatbot-container">
-    <div class="chat-messages">
-        <div *ngFor="let message of messages" [ngClass]="{'user-message': message.user, 'assistant-message': !message.user}">
+<div class="chat-container">
+    <!-- Messages -->
+    <div class="messages">
+        <div *ngFor="let message of messages" class="message"
+            [ngClass]="{ 'user-message': message.user, 'bot-message': !message.user }">
             {{ message.text }}
         </div>
+        <div class="message bot-message loading-message" *ngIf="isLoading">
+            Loading...
+        </div>
+
+        <div class="message bot-message" *ngIf="formattedResponse && !customErrorMessage && !isLoading">
+            <span [innerHtml]="formattedResponse"></span>
+        </div><!-- Loading message -->
+        <div class="message bot-message" *ngIf="isLoading">
+            Loading...
+        </div>
+        
+        <!-- Error message -->
+        <div class="message bot-message" *ngIf="errorOccurred">
+            {{ customErrorMessage }}
+        </div>
+        
+        <!-- Bot response -->
+        <div class="message bot-message" *ngIf="formattedResponse && !errorOccurred && !isLoading">
+            <span [innerHtml]="formattedResponse"></span>
+        </div>
     </div>
-    <div class="user-input">
-        <input type="text" [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Type your message...">
-        <button (click)="sendMessage()">Send</button>
-    </div>
+</div>
+<!-- Input form -->
+<div class="input-container">
+    <input type="text" [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Type a message..." />
+    <button (click)="sendMessage()">Send</button>
 </div>

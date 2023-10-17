@@ -1,35 +1,193 @@
-/* Style for the chat container */
+/* Variables for colors */
+$primary-color: #009688;
+/* Teal */
+$secondary-color: #F44336;
+/* Red */
+$background-color: #F5F5F5;
+/* Light Gray */
+$text-color: #333;
+/* Dark Gray */
+
+/* Chat container styles */
 .chat-container {
-    font-family: Arial, sans-serif;
-    font-size: 14px;
+    width: 98%;
+    /* Full width */
+    height: 90vh;
+    /* Full viewport height */
+    background-color: $background-color;
+    /* Light cream background */
+    padding: 10px;
+    font-family: 'Comic Sans MS', cursive;
+    /* Fun, comic-style font */
+    overflow-y: auto;
+    /* Enable vertical scrolling if content overflows */
 }
 
-/* Style for user messages (in this case, the assistant's responses) */
+/* Message bubble styles */
+.message {
+    margin: 10px 0;
+}
+
 .user-message {
-    background-color: #f3f3f3;
-    border-radius: 10px;
+    background-color: $secondary-color;
+    /* Sky blue user message */
+    color: #333;
+    /* Dark gray text */
     padding: 10px;
-    margin: 10px;
-    max-width: 70%;
-    word-wrap: break-word;
+    border-radius: 10px 10px 0 10px;
+    float: right;
+    clear: both;
 }
 
-/* Style for assistant messages (in this case, the user's messages) */
-/* Style for assistant messages (responses) */
-.assistant-message {
-    background-color: #0084ff;
-    /* Light gray background */
-    color: #000;
-    /* Black text */
-    border-radius: 10px;
+.bot-message {
+    background-color: $primary-color;
+    /* Green bot message */
+    color: #333;
+    /* Dark gray text */
     padding: 10px;
-    margin: 10px;
-    max-width: 70%;
-    word-wrap: break-word;
-    position: relative;
+    border-radius: 10px 10px 10px 0;
+    float: left;
+    clear: both;
 }
 
-.assistant-message pre {
-    white-space: pre-wrap;
-    word-wrap: break-word;
+/* Input container styles */
+.input-container {
+    display: flex;
+    margin: 10px 0;
+    align-items: center;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    /* Remove the border */
+    border-radius: 5px;
+    margin-right: 10px;
+    font-family: 'Comic Sans MS', cursive;
+    /* Fun, comic-style font */
+}
+
+button {
+    background-color: $secondary-color;
+    /* Pastel red button */
+    color: white;
+    border: none;
+    /* Remove the border */
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: 'Comic Sans MS', cursive;
+    /* Fun, comic-style font */
+}
+
+/* Animation for message bubbles */
+.message-enter-active,
+.message-leave-active {
+    transition: all 0.5s;
+}
+
+.message-enter,
+.message-leave-to {
+    opacity: 0;
+    transform: translateX(50px);
+}
+
+/* Styles for the chat container */
+.chat-container {
+    max-width: 98%;
+    margin: 0;
+    padding: 10px;
+    height: 90vh;
+    /* Make the chat container take the full viewport height */
+    background-color: $background-color;
+    border: none;
+    /* Remove the border */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    font-family: 'Comic Sans MS', cursive;
+    display: flex;
+    flex-direction: column-reverse;
+    /* Reverse the order of messages to display new messages at the bottom */
+    justify-content: flex-end;
+    /* Align messages to the bottom */
+}
+
+/* Styles for the error message */
+.error-message {
+    background-color: #FF5733;
+    /* Red background for error message */
+    color: white;
+    /* White text color */
+    border-radius: 10px;
+    padding: 10px;
+    clear: both;
+}
+
+/* Styles for the loading message */
+/* Style for the loading message */
+.loading-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+/* Define your base font size */
+$base-font-size: 20px;
+
+/* Chat container styles */
+.chat-container {
+    /* ... other styles ... */
+
+    /* Responsive font size */
+    font-size: $base-font-size;
+    /* Set a base font size */
+}
+
+/* Define media queries for responsive font size */
+@media screen and (min-width: 768px) {
+
+    /* Larger font size for wider viewports */
+    .chat-container {
+        font-size: calc(#{$base-font-size} + 2px);
+        /* Increase font size */
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    /* Smaller font size for narrower viewports */
+    .chat-container {
+        font-size: calc(#{$base-font-size} - 2px);
+        /* Decrease font size */
+    }
+}
+
+/* Button and input styles */
+input[type="text"],
+button {
+    padding: 10px;
+    font-size: $base-font-size;
+    /* Set the base font size for input and button */
+}
+
+/* Define media queries for responsive font size for button and input */
+@media screen and (min-width: 768px) {
+
+    /* Larger font size for wider viewports */
+    input[type="text"],
+    button {
+        font-size: calc(#{$base-font-size} + 2px);
+        /* Increase font size */
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    /* Smaller font size for narrower viewports */
+    input[type="text"],
+    button {
+        font-size: calc(#{$base-font-size} - 2px);
+        /* Decrease font size */
+    }
 }
