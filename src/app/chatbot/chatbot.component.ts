@@ -37,21 +37,16 @@ export class ChatbotComponent implements OnInit {
     this.messages.push({ text: 'What the fuck do you want?', user: false });
   }
 
-  async getApiKey(): Promise<string> {
-    try {
-      // Define headers within the method scope
-      const headers = new HttpHeaders({
-        Authorization: `Bearer ${environment.authToken}`
-      });
-
-      const response = this.http.post<ApiKeyResponse>(this.backendUrl, {}, { headers });
-      return (await lastValueFrom(response)).apiKey;
-    } catch (error) {
-      console.error('Error fetching API key:', error);
-      return '';
-    }
+async getApiKey(): Promise<string> {
+  try {
+    const response = this.http.get<{ apiKey: string }>('/api/getApiKey');
+    const data = await lastValueFrom(response);
+    return data.apiKey || '';
+  } catch (error) {
+    console.error('Error fetching API key:', error);
+    return '';
   }
-
+}
 
   async sendMessage() {
     if (this.userInput.trim() === '') return;
