@@ -5,25 +5,13 @@
             [ngClass]="{ 'user-message': message.user, 'bot-message': !message.user }">
             {{ message.text }}
         </div>
-        <div class="message bot-message loading-message" *ngIf="isLoading">
-            Loading...
-        </div>
-
-        <div class="message bot-message" *ngIf="formattedResponse && !customErrorMessage && !isLoading">
-            <span [innerHtml]="formattedResponse"></span>
-        </div><!-- Loading message -->
+        <!-- Loading message -->
         <div class="message bot-message" *ngIf="isLoading">
             Loading...
         </div>
-        
         <!-- Error message -->
         <div class="message bot-message" *ngIf="errorOccurred">
             {{ customErrorMessage }}
-        </div>
-        
-        <!-- Bot response -->
-        <div class="message bot-message" *ngIf="formattedResponse && !errorOccurred && !isLoading">
-            <span [innerHtml]="formattedResponse"></span>
         </div>
     </div>
 </div>

@@ -2,7 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { from } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
+
+
+
+interface ApiKeyResponse {
+  apiKey: string;
+}
 
 @Component({
   selector: 'app-chatbot',
@@ -13,7 +19,7 @@ export class ChatbotComponent implements OnInit {
   messages: ChatMessage[] = [];
   userInput: string = '';
   apiUrl = 'https://api.openai.com/v1/chat/completions';
-  apiKey = "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";
+  backendUrl = '/api/getApiKey'; // URL to your backend endpoint
 
   // Add loading and error variables
   loading: boolean = false;
@@ -28,8 +34,24 @@ export class ChatbotComponent implements OnInit {
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    this.messages.push({ text: 'Hello! How can I assist you today?', user: false });
+    this.messages.push({ text: 'What the fuck do you want?', user: false });
   }
+
+  async getApiKey(): Promise<string> {
+    try {
+      // Define headers within the method scope
+      const headers = new HttpHeaders({
+        Authorization: `Bearer ${environment.authToken}`
+      });
+
+      const response = this.http.post<ApiKeyResponse>(this.backendUrl, {}, { headers });
+      return (await lastValueFrom(response)).apiKey;
+    } catch (error) {
+      console.error('Error fetching API key:', error);
+      return '';
+    }
+  }
+
 
   async sendMessage() {
     if (this.userInput.trim() === '') return;
@@ -37,10 +59,16 @@ export class ChatbotComponent implements OnInit {
     this.messages.push({ text: this.userInput, user: true });
 
     const userMessage = this.userInput;
+    const apiKey = await this.getApiKey(); // Retrieve the API key from the backend
+
+    if (!apiKey) {
+      this.handleError('Failed to retrieve API key.');
+      return;
+    }
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.apiKey}`
+      'Authorization': `Bearer ${apiKey}`
     });
 
     const conversation = [
@@ -48,14 +76,22 @@ export class ChatbotComponent implements OnInit {
       { role: 'user', content: userMessage },
     ];
 
-    this.isLoading = true; // Set loading to true when the request starts
-    this.errorOccurred = false; // Reset the error flag
-    this.customErrorMessage = ''; // Reset the custom error message
+    this.isLoading = true;
+    this.errorOccurred = false;
+    this.customErrorMessage = '';
 
     try {
       const response = await this.http.post(this.apiUrl, { model: 'gpt-4', messages: conversation }, { headers }).toPromise();
+
       if (response && 'choices' in response) {
-        // ... (your existing code)
+        const apiResponse: ApiResponse = response as ApiResponse;
+        const botResponse = apiResponse.choices[0].message.content.trim();
+
+        // Push the bot's response to the messages array
+        this.messages.push({ text: botResponse, user: false });
+
+        // Format and set the response
+        this.formattedResponse = this.formatCodeBlock(botResponse);
       } else {
         this.handleError("Invalid or empty response from the API.");
       }
@@ -63,8 +99,9 @@ export class ChatbotComponent implements OnInit {
       this.handleError("I'm experiencing technical difficulties at the moment. Please try again later.");
       console.error(error);
     } finally {
-      this.isLoading = false; // Set loading to false when the request completes
+      this.isLoading = false;
     }
+    this.userInput = ''; // Clear the input field
   }
 
   handleError(errorMessage: string): void {
@@ -76,6 +113,10 @@ export class ChatbotComponent implements OnInit {
     const formattedCode = this.sanitizer.bypassSecurityTrustHtml(`<pre><code>${code}</code></pre>`);
     return formattedCode;
   }
+}
+// Define the ApiResponse type based on the expected structure
+interface ApiResponse {
+  choices: { message: { content: string } }[];
 }
 
 interface ChatMessage {

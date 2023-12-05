@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    openaiApiKey: "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",
+    authToken: 'VuIWQ5H4YolJtgoEq31tOcMZlPYm7CjIk5f1acym'
 };
