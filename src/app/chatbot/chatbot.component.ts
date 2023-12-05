@@ -19,7 +19,7 @@ export class ChatbotComponent implements OnInit {
   messages: ChatMessage[] = [];
   userInput: string = '';
   apiUrl = 'https://api.openai.com/v1/chat/completions';
-  backendUrl = '/api/getApiKey'; // URL to your backend endpoint
+  backendUrl = '/api/getApiKey.js'; // URL to your backend endpoint
 
   // Add loading and error variables
   loading: boolean = false;
