@@ -34,19 +34,24 @@ export class ChatbotComponent implements OnInit {
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    this.messages.push({ text: 'What the fuck do you want?', user: false });
+    this.messages.push({ text: 'What do you want?', user: false });
   }
 
-async getApiKey(): Promise<string> {
-  try {
-    const response = this.http.get<{ apiKey: string }>('/api/getApiKey');
-    const data = await lastValueFrom(response);
-    return data.apiKey || '';
-  } catch (error) {
-    console.error('Error fetching API key:', error);
-    return '';
+  async getApiKey(): Promise<string> {
+    try {
+      const headers = new HttpHeaders({
+        Authorization: `Bearer ${environment.authToken}`
+      });
+
+      const response = this.http.get<{ apiKey: string }>('/api/getApiKey', { headers });
+      const data = await lastValueFrom(response);
+      return data.apiKey || '';
+    } catch (error) {
+      console.error('Error fetching API key:', error);
+      return '';
+    }
   }
-}
+
 
   async sendMessage() {
     if (this.userInput.trim() === '') return;
