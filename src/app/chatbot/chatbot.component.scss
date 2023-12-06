@@ -1,11 +1,11 @@
 /* Variables for colors */
-$primary-color: #009688;
+$primary-color: #605ced;
 /* Teal */
-$secondary-color: #F44336;
+$secondary-color: #4646f7;
 /* Red */
-$background-color: #F5F5F5;
+$background-color: #fff;
 /* Light Gray */
-$text-color: #333;
+$text-color: #fafafa;
 /* Dark Gray */
 
 /* Chat container styles */
@@ -29,9 +29,9 @@ $text-color: #333;
 }
 
 .user-message {
-    background-color: $secondary-color;
+    background: linear-gradient(to left bottom, #8989FA, #9589FA, #a6a3f5);
     /* Sky blue user message */
-    color: #333;
+    color: #f4f4fa;
     /* Dark gray text */
     padding: 10px;
     border-radius: 10px 10px 0 10px;
@@ -40,9 +40,9 @@ $text-color: #333;
 }
 
 .bot-message {
-    background-color: $primary-color;
+    background: linear-gradient(to right bottom, #4646f7, #5c4cf7, #605ced);
     /* Green bot message */
-    color: #333;
+    color: #f4f4fa;
     /* Dark gray text */
     padding: 10px;
     border-radius: 10px 10px 10px 0;
@@ -53,19 +53,29 @@ $text-color: #333;
 /* Input container styles */
 .input-container {
     display: flex;
-    margin: 10px 0;
+    margin: 0px 0;
+    height: 70px;
+    border-radius: 10px;
     align-items: center;
+    background: linear-gradient(to right bottom, #4646f7, #5c4cf7, #605ced);
 }
 
 input[type="text"] {
     flex: 1;
     padding: 10px;
     border: none;
+    color: #f4f4fa;
     /* Remove the border */
     border-radius: 5px;
-    margin-right: 10px;
+    margin: 0 10px 0 20px;
     font-family: 'Comic Sans MS', cursive;
     /* Fun, comic-style font */
+    background-color: transparent !important;
+
+    &::placeholder{
+        color: #f4f4fa;
+        opacity: .6;
+    }
 }
 
 button {
@@ -74,8 +84,9 @@ button {
     color: white;
     border: none;
     /* Remove the border */
-    border-radius: 5px;
-    padding: 10px 20px;
+    border-radius: 25px;
+    padding: 10px 20px 10px 20px !important;
+    margin: 0 10px 0 10px;
     cursor: pointer;
     font-family: 'Comic Sans MS', cursive;
     /* Fun, comic-style font */

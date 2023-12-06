@@ -1,17 +1,20 @@
 <div class="chat-container">
     <!-- Messages -->
     <div class="messages">
-        <div *ngFor="let message of messages" class="message"
-            [ngClass]="{ 'user-message': message.user, 'bot-message': !message.user }">
-            {{ message.text }}
-        </div>
-        <!-- Loading message -->
-        <div class="message bot-message" *ngIf="isLoading">
-            Loading...
-        </div>
-        <!-- Error message -->
-        <div class="message bot-message" *ngIf="errorOccurred">
-            {{ customErrorMessage }}
+        <div class="bot-message-container">
+            <img class="bot-img" [src]="imagePath" alt="chatbot pic" width="60px">
+            <div *ngFor="let message of messages" class="message"
+                [ngClass]="{ 'user-message': message.user, 'bot-message': !message.user }">
+                {{ message.text }}
+            </div>
+            <!-- Loading message -->
+            <div class="message bot-message" *ngIf="isLoading">
+                Loading...
+            </div>
+            <!-- Error message -->
+            <div class="message bot-message" *ngIf="errorOccurred">
+                {{ customErrorMessage }}
+            </div>
         </div>
     </div>
 </div>

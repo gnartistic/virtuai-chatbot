@@ -25,6 +25,9 @@ export class ChatbotComponent implements OnInit {
   loading: boolean = false;
   error: string | null = null;
 
+  imagePath = 'assets/img/Jim.png';
+
+
   formattedResponse: SafeHtml = '';
   customErrorMessage: string | null = null;
 
