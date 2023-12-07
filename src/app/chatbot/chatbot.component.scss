@@ -1,23 +1,18 @@
 /* Variables for colors */
 $primary-color: #605ced;
-/* Teal */
 $secondary-color: #4646f7;
-/* Red */
 $background-color: #fff;
-/* Light Gray */
 $text-color: #fafafa;
-/* Dark Gray */
 
 /* Chat container styles */
 .chat-container {
     width: 98%;
     /* Full width */
-    height: 90vh;
+    height: 70vh;
     /* Full viewport height */
     background-color: $background-color;
     /* Light cream background */
     padding: 10px;
-    font-family: 'Comic Sans MS', cursive;
     /* Fun, comic-style font */
     overflow-y: auto;
     /* Enable vertical scrolling if content overflows */
@@ -32,13 +27,13 @@ $text-color: #fafafa;
 
 .message-container {
     display: flex;
-    justify-content: flex-start; // Default alignment for bot messages
-    margin-bottom: 10px; // Space between messages
+    justify-content: flex-start;
+    margin-bottom: 10px;
 }
 
 .user-message-container {
     display: flex;
-    justify-self: right; // Align user messages to the right
+    justify-self: right;
     flex-direction: row-reverse;
     justify-self: flex-end;
 }
@@ -53,28 +48,20 @@ $text-color: #fafafa;
 .bot-message-text {
     padding: 10px;
     border-radius: 10px;
-    margin: 5px; // Spacing around the message text
+    margin: 5px;
     height: fit-content;
     width: fit-content;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .user-message-text {
     background: linear-gradient(to left bottom, #8989FA, #9589FA, #a6a3f5);
-    /* Sky blue user message */
     color: #f4f4fa;
-    /* Dark gray text */
     padding: 10px;
     border-radius: 10px 10px 0 10px;
-    // float: right;
 
     clear: both;
 }
-
-// .user-message-text {
-//     background: linear-gradient(to left bottom, #8989FA, #9589FA, #a6a3f5);
-//         /* Sky blue user message */
-//         color: #f4f4fa;
-// }
 .user-img {
 width: 70px;
     margin-top: 15px;
@@ -94,14 +81,9 @@ width: 70px;
     margin-right: 10px;
 }
 
-// .bot-message-container {
-//     align-items: flex-start; // Align bot messages to the left
-// }
 .bot-message-text{
 background: linear-gradient(to right bottom, #4646f7, #5c4cf7, #605ced);
-    /* Green bot message */
     color: #f4f4fa;
-    /* Dark gray text */
     padding: 10px;
     border-radius: 10px 10px 10px 0;
 }
@@ -109,42 +91,49 @@ background: linear-gradient(to right bottom, #4646f7, #5c4cf7, #605ced);
 /* Input container styles */
 .input-container {
     display: flex;
-    margin: 0px 0;
     height: 70px;
-    border-radius: 10px;
     align-items: center;
-    background: linear-gradient(to right bottom, #4646f7, #5c4cf7, #605ced);
+    position: fixed;
+    align-self: center;
+    bottom: 10%;
+    width: 90%;
+    background-color: $text-color;
+
+}
+
+.gradient-border{
+    border: 4px solid  $primary-color;
+    border-radius: 25px;
 }
 
 input[type="text"] {
     flex: 1;
     padding: 10px;
     border: none;
-    color: #f4f4fa;
+    color: $primary-color;
     /* Remove the border */
     border-radius: 5px;
     margin: 0 10px 0 20px;
-    font-family: 'Comic Sans MS', cursive;
     /* Fun, comic-style font */
     background-color: transparent !important;
+    outline: none;
 
     &::placeholder{
-        color: #f4f4fa;
+        color: $primary-color;
         opacity: .6;
     }
 }
 
 button {
-    background-color: $secondary-color;
+    background-color: $primary-color;
     /* Pastel red button */
     color: white;
     border: none;
     /* Remove the border */
-    border-radius: 25px;
-    padding: 10px 20px 10px 20px !important;
-    margin: 0 10px 0 10px;
+    border-radius: 0 20px 20px 0;
+    padding: 25px !important;
+    margin: 0 0 0 10px;
     cursor: pointer;
-    font-family: 'Comic Sans MS', cursive;
     /* Fun, comic-style font */
 }
 
@@ -171,7 +160,6 @@ button {
     border: none;
     /* Remove the border */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    font-family: 'Comic Sans MS', cursive;
     display: flex;
     flex-direction: column-reverse;
     /* Reverse the order of messages to display new messages at the bottom */
@@ -235,17 +223,6 @@ button {
     padding: 10px;
     font-size: $base-font-size;
     /* Set the base font size for input and button */
-}
-
-/* Define media queries for responsive font size for button and input */
-@media screen and (min-width: 768px) {
-
-    /* Larger font size for wider viewports */
-    input[type="text"],
-    button {
-        font-size: calc(#{$base-font-size} + 2px);
-        /* Increase font size */
-    }
 }
 
 @media screen and (max-width: 767px) {

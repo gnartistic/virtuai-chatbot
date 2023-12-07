@@ -28,9 +28,10 @@
             </div>
         </div>
     </div>
-</div>
-<!-- Input form -->
-<div class="input-container">
-    <input type="text" [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Type a message..." />
-    <button (click)="sendMessage()">Send</button>
+    <!-- Input form -->
+    <div class="input-container gradient-border">
+        <input type="text" class="gradient-border" [(ngModel)]="userInput" (keyup.enter)="sendMessage()"
+            placeholder="Type a message..." />
+        <button (click)="sendMessage()">Send</button>
+    </div>
 </div>
