@@ -24,30 +24,85 @@ $text-color: #fafafa;
 }
 
 /* Message bubble styles */
-.message {
-    margin: 10px 0;
+
+.messages {
+    display: flex;
+    flex-direction: column;
 }
 
-.user-message {
+.message-container {
+    display: flex;
+    justify-content: flex-start; // Default alignment for bot messages
+    margin-bottom: 10px; // Space between messages
+}
+
+.user-message-container {
+    display: flex;
+    justify-self: right; // Align user messages to the right
+    flex-direction: row-reverse;
+    justify-self: flex-end;
+}
+
+.bot-message-container {
+    display: flex;
+    width: fit-content;
+    justify-self: flex-start;
+}
+
+.user-message-text,
+.bot-message-text {
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px; // Spacing around the message text
+    height: fit-content;
+    width: fit-content;
+}
+
+.user-message-text {
     background: linear-gradient(to left bottom, #8989FA, #9589FA, #a6a3f5);
     /* Sky blue user message */
     color: #f4f4fa;
     /* Dark gray text */
     padding: 10px;
     border-radius: 10px 10px 0 10px;
-    float: right;
+    // float: right;
+
     clear: both;
 }
 
-.bot-message {
-    background: linear-gradient(to right bottom, #4646f7, #5c4cf7, #605ced);
+// .user-message-text {
+//     background: linear-gradient(to left bottom, #8989FA, #9589FA, #a6a3f5);
+//         /* Sky blue user message */
+//         color: #f4f4fa;
+// }
+.user-img {
+width: 70px;
+    margin-top: 15px;
+    border-radius: 50px;
+    border: 5px solid #4646f7;
+    padding: 5px;
+    margin:0px 10px 0 10px;
+}
+
+.bot-img, .user-img {
+    width: 70px;
+    margin-top: 15px;
+    border-radius: 50px;
+    border: 5px solid #4646f7;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+// .bot-message-container {
+//     align-items: flex-start; // Align bot messages to the left
+// }
+.bot-message-text{
+background: linear-gradient(to right bottom, #4646f7, #5c4cf7, #605ced);
     /* Green bot message */
     color: #f4f4fa;
     /* Dark gray text */
     padding: 10px;
     border-radius: 10px 10px 10px 0;
-    float: left;
-    clear: both;
 }
 
 /* Input container styles */

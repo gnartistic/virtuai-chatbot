@@ -25,7 +25,8 @@ export class ChatbotComponent implements OnInit {
   loading: boolean = false;
   error: string | null = null;
 
-  imagePath = 'assets/img/Jim.png';
+  userImagePath = 'assets/img/Jim.png';
+  botImagePath = 'assets/img/botImage.png';
 
 
   formattedResponse: SafeHtml = '';
@@ -37,7 +38,7 @@ export class ChatbotComponent implements OnInit {
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    this.messages.push({ text: 'What do you want?', user: false });
+    this.messages.push({ text: "Hello! How can I help you today?", user: false });
   }
 
   async getApiKey(): Promise<string> {
