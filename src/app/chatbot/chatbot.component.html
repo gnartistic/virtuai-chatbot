@@ -12,12 +12,20 @@
             </div>
         </div>
         <!-- Loading message -->
-        <div class="message bot-message-text" *ngIf="isLoading">
-            Loading...
+        <div class="bot-message-container">
+            <img [src]=botImagePath [alt]="'Chatbot'" [ngClass]="{ 'bot-img': true }" *ngIf="isLoading">
+            <div class="message bot-message-text" *ngIf="isLoading">
+                Loading...
+            </div>
         </div>
+
         <!-- Error message -->
-        <div class="message bot-message-text" *ngIf="errorOccurred">
-            {{ customErrorMessage }}
+        <div class="bot-message-container">
+            <img [src]=botImagePath [alt]="'Chatbot'" 
+            [ngClass]="{ 'bot-img': true }" *ngIf="errorOccurred"/>
+            <div class="message bot-message-text" *ngIf="errorOccurred">
+                {{ customErrorMessage }}
+            </div>
         </div>
     </div>
 </div>
