@@ -41,7 +41,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    this.messages.push({ text: "Hello! How can I help you today?", user: false });
+    this.messages.push({ text: "Hi, I'm Fred! How can I help you today?", user: false });
   }
 
   ngAfterViewChecked() {
@@ -96,7 +96,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     });
 
     const conversation = [
-      { role: 'system', content: 'You are a helpful assistant.' },
+      { role: 'system', content: 'You are personable chatbot.' },
       { role: 'user', content: userMessage },
     ];
 
