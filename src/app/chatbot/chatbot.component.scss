@@ -14,7 +14,6 @@ $text-color: #fafafa;
     /* Light cream background */
     padding: 10px;
     /* Fun, comic-style font */
-    overflow-y: auto;
     /* Enable vertical scrolling if content overflows */
 }
 
@@ -23,6 +22,13 @@ $text-color: #fafafa;
 .messages {
     display: flex;
     flex-direction: column;
+        overflow-y: auto;
+        padding-bottom: 125px;
+        padding-top: 50px;
+
+        &::-webkit-scrollbar{
+        background-color: transparent;
+        }
 }
 
 .message-container {
@@ -91,50 +97,77 @@ background: linear-gradient(to right bottom, #4646f7, #5c4cf7, #605ced);
 /* Input container styles */
 .input-container {
     display: flex;
-    height: 70px;
     align-items: center;
     position: fixed;
     align-self: center;
     bottom: 10%;
-    width: 90%;
-    background-color: $text-color;
+    width: 60%;
+    background-color: rgba(255, 255, 255, 0.5);
+    /* Semi-transparent white background */
+    backdrop-filter: blur(20px);
+    /* Blur effect */
+    padding: 10px;
+    /* Add padding for spacing inside the container */
+    border-radius: 10px;
+    /* Optional: border radius for rounded corners */
 
+    button {
+            background-color: $primary-color;
+            /* Pastel red button */
+            color: white;
+            border: none;
+            /* Remove the border */
+            border-radius: 10px;
+            padding: 10px !important;
+            margin: 0 0 0 10px;
+            position: fixed;
+            bottom: 15%;
+            right: 2%;
+            cursor: pointer;
+
+            .bx-up-arrow-alt{
+                font-size: 25pxpx;
+            }
+            
+            
+            /* Fun, comic-style font */
+        }
+
+    textarea {
+        flex: 1;
+        /* Flex grow to fill available space */
+        padding: 0px;
+        /* Padding for text */
+        border: none;
+        /* Remove border */
+        color: $primary-color;
+        border-radius: 5px;
+        /* Border radius */
+        margin: 0 10px;
+        /* Margin */
+        font-family:Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        background-color: transparent;
+        /* Transparent background */
+        outline: none;
+        /* Remove outline */
+        resize: none;
+
+        &::placeholder {
+            color: $primary-color;
+            opacity: .6;
+        }
+
+        &:focus {
+            height: auto;
+            /* Allows the textarea to grow in height on focus */
+        }
+    }
 }
 
 .gradient-border{
     border: 4px solid  $primary-color;
     border-radius: 25px;
-}
-
-input[type="text"] {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    color: $primary-color;
-    /* Remove the border */
-    border-radius: 5px;
-    margin: 0 10px 0 20px;
-    /* Fun, comic-style font */
-    background-color: transparent !important;
-    outline: none;
-
-    &::placeholder{
-        color: $primary-color;
-        opacity: .6;
-    }
-}
-
-button {
-    background-color: $primary-color;
-    /* Pastel red button */
-    color: white;
-    border: none;
-    /* Remove the border */
-    border-radius: 0 20px 20px 0;
-    padding: 25px !important;
-    margin: 0 0 0 10px;
-    cursor: pointer;
-    /* Fun, comic-style font */
 }
 
 /* Animation for message bubbles */

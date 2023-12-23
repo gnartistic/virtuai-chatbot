@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -15,7 +15,10 @@ interface ApiKeyResponse {
   templateUrl: './chatbot.component.html',
   styleUrls: ['./chatbot.component.scss']
 })
-export class ChatbotComponent implements OnInit {
+export class ChatbotComponent implements OnInit, AfterViewChecked {
+
+  @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
+
   messages: ChatMessage[] = [];
   userInput: string = '';
   apiUrl = 'https://api.openai.com/v1/chat/completions';
@@ -39,6 +42,23 @@ export class ChatbotComponent implements OnInit {
 
   ngOnInit() {
     this.messages.push({ text: "Hello! How can I help you today?", user: false });
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  private scrollToBottom(): void {
+    try {
+      const element = this.messagesContainer.nativeElement;
+      element.scrollTop = element.scrollHeight;
+    } catch (err) { }
+  }
+
+  autoGrow(event: any): void {
+    const textArea = event.target;
+    textArea.style.height = 'auto';
+    textArea.style.height = textArea.scrollHeight + 'px';
   }
 
   async getApiKey(): Promise<string> {

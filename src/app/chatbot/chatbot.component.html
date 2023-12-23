@@ -1,6 +1,6 @@
 <div class="chat-container">
     <!-- Messages -->
-    <div class="messages">
+    <div class="messages" #messagesContainer>
         <div *ngFor="let message of messages"
             [ngClass]="{ 'user-message-container': message.user, 'bot-message-container': !message.user }">
             <!-- Conditional image rendering -->
@@ -30,8 +30,8 @@
     </div>
     <!-- Input form -->
     <div class="input-container gradient-border">
-        <input type="text" class="gradient-border" [(ngModel)]="userInput" (keyup.enter)="sendMessage()"
-            placeholder="Type a message..." />
-        <button (click)="sendMessage()">Send</button>
-    </div>
+    <textarea class="gradient-border" [(ngModel)]="userInput" (keyup.enter)="sendMessage()" (input)="autoGrow($event)" placeholder="Type a message..."></textarea>
+    <button (click)="sendMessage()"><i class="bx bx-up-arrow-alt"></i></button>
+</div>
+
 </div>
